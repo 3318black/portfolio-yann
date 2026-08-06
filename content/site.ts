@@ -112,9 +112,9 @@ export const sections = {
 
 export const hero = {
   title:
-    "Data Analyst, Je Nettoie Les Données Avec Méthode Et J'Explique Ce Qu'Elles Disent.",
+    "Vos Données Contiennent Déjà Les Réponses. Mon Métier Est De Les Rendre Lisibles.",
   subtitle:
-    "Aucune conclusion sans un jeu de données fiable : nettoyage documenté et reproductible, statistiques et machine learning, restitution lisible sous Looker Studio.",
+    "Data analyst diplômé en data science. Je remets en état les jeux de données les plus imparfaits, j'en tire des analyses statistiques et prédictives fiables, et j'en restitue une lecture claire sous Looker Studio.",
   cta: { label: "projets sélectionnés", href: "#projets" },
   strip: {
     text: "Découvrez mon parcours — licence en informatique, développement d'applications, master en data science — et les projets qui ont construit ma manière de travailler.",
