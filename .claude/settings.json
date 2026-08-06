@@ -30,14 +30,7 @@
       "Bash(git rev-list *)",
       "Bash(git switch *)",
       "Bash(git add *)",
-      "Bash(git commit *)",
-      "Bash(git push *)",
-      "Bash(ls -la \"C:/Users/pc/.claude/projects/c--Users-pc-Documents-portfolio-yann/memory/\" 2>&1 | head; echo \"--- MEMORY.md ---\"; cat \"C:/Users/pc/.claude/projects/c--Users-pc-Documents-portfolio-yann/memory/MEMORY.md\" 2>&1 | head -20)",
-      "Read(//c/Users/pc/.claude/projects/c--Users-pc-Documents-portfolio-yann/**)",
-      "Bash(git stash *)",
-      "Bash(python -c \"import json;json.load\\(open\\('.claude/settings.json',encoding='utf-8'\\)\\);print\\('  JSON valide'\\)\")",
-      "Bash(git rm *)",
-      "Bash(mkdir -p public)"
+      "Bash(git commit *)"
     ]
   }
 }
