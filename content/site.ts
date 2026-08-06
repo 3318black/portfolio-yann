@@ -5,8 +5,11 @@
  * les composants ne contiennent que de la présentation. Éditer ce fichier
  * suffit à mettre le site à jour, sans toucher au JSX.
  *
- * Les valeurs reprises telles quelles de la maquette sont marquées « exemple » :
- * elles sont à remplacer par les vraies avant mise en ligne.
+ * Identité, positionnement, compétences, stack, FAQ et contact décrivent le
+ * profil réel. Restent issus de la maquette, donc **non vérifiés** : les quatre
+ * projets, les deux articles de veille, les statistiques et les témoignages
+ * (ces derniers désactivés, voir `sections.showTestimonials`). Ils sont
+ * signalés par un commentaire « maquette » et suivis dans TASKS.md.
  */
 
 import type { StripeTint } from "@/components/ui/media-placeholder";
@@ -55,7 +58,7 @@ export type Article = {
 
 export const identity = {
   name: "Yann Niangara",
-  role: "Data Analyst · Data Science Student",
+  role: "Data Scientist · Développeur Python",
   availability: "Ouvert aux opportunités",
   email: "niangara33@gmail.com",
   /**
@@ -94,11 +97,12 @@ export const nav: readonly NavLink[] = [
 
 export const sections = {
   /**
-   * Les témoignages de la maquette sont fictifs et attribués à des personnes
-   * nommées. Les remplacer par de vrais retours, ou passer ce flag à `false`,
-   * avant toute mise en ligne.
+   * Désactivé : les témoignages de la maquette sont fictifs et attribués à des
+   * personnes nommées qui n'existent pas. Ne repasser ce drapeau à `true`
+   * qu'après avoir remplacé le contenu de `testimonials.items` par de vrais
+   * retours.
    */
-  showTestimonials: true,
+  showTestimonials: false,
   showArticles: true,
 } as const;
 
@@ -108,12 +112,12 @@ export const sections = {
 
 export const hero = {
   title:
-    "Étudiant En Data Science Spécialisé En Analyse Et Visualisation De Données.",
+    "Diplômé En Data Science Et Développeur Python, De L'Analyse Au Déploiement.",
   subtitle:
-    "Je nettoie, j'explore et je restitue des données métier : dashboards Power BI, analyses Python et requêtes SQL au service de décisions concrètes.",
+    "J'explore les données, j'entraîne des modèles et je livre les API qui les rendent utilisables : Python, SQL, FastAPI et PostgreSQL au service de décisions concrètes.",
   cta: { label: "projets sélectionnés", href: "#projets" },
   strip: {
-    text: "Découvrez mon parcours, ma formation en data science et les projets qui ont construit ma manière de travailler.",
+    text: "Découvrez mon parcours — licence en informatique, développement d'applications, master en data science — et les projets qui ont construit ma manière de travailler.",
     cta: { label: "à propos de moi", href: "#apropos" },
   },
 } as const;
@@ -132,27 +136,31 @@ const skillItems: readonly AccordionEntry[] = [
     body: "Lecture critique des distributions, corrélations, tests d'hypothèses, segmentation. Je documente ce que les données peuvent — et ne peuvent pas — démontrer.",
   },
   {
-    title: "3. VISUALISATION DE DONNÉES",
-    body: "Power BI, Tableau, Matplotlib et Seaborn. Des graphiques choisis pour la question posée, lisibles par des équipes non techniques.",
+    title: "3. MACHINE LEARNING",
+    body: "Régression, classification, validation croisée et évaluation des modèles avec scikit-learn. Je m'attache autant à mesurer la performance qu'à énoncer les limites d'un modèle.",
   },
   {
-    title: "4. SQL & GESTION DE BASES DE DONNÉES",
-    body: "PostgreSQL et MySQL : requêtes analytiques, CTE, fonctions de fenêtrage, modélisation en étoile pour l'analyse.",
+    title: "4. DÉVELOPPEMENT D'API & MISE EN PRODUCTION",
+    body: "FastAPI et Flask : exposer un modèle ou un jeu de données derrière une interface stable, typée et documentée. Un résultat qui reste dans un notebook ne sert personne.",
   },
   {
-    title: "5. MACHINE LEARNING (BASES)",
-    body: "Régression, classification, validation croisée, évaluation des modèles avec scikit-learn — et lecture honnête de leurs limites.",
+    title: "5. SQL & MODÉLISATION DE BASES DE DONNÉES",
+    body: "PostgreSQL : requêtes analytiques, CTE, fonctions de fenêtrage, conception de schéma et modélisation en étoile pour l'analyse.",
   },
   {
-    title: "6. DASHBOARDING & REPORTING",
-    body: "Indicateurs partagés, rafraîchissement planifié, notes de lecture pour que le dashboard reste utilisé après la livraison.",
+    title: "6. AUTOMATISATION",
+    body: "Scripts et traitements planifiés pour supprimer les étapes manuelles récurrentes : collecte, contrôle de qualité, rafraîchissement des livrables.",
+  },
+  {
+    title: "7. VISUALISATION & RESTITUTION",
+    body: "Matplotlib, Seaborn et outils de dashboarding. Des graphiques choisis pour la question posée, lisibles par des équipes non techniques.",
   },
 ];
 
 export const skills = {
   title: ["CE QUE JE PEUX", "FAIRE POUR VOUS"],
   intro:
-    "De la collecte au dashboard livré, je couvre la chaîne complète d'une analyse : cadrage de la question métier, préparation des données, exploration, restitution.",
+    "De la donnée brute à l'API livrée, je couvre la chaîne complète : cadrage de la question métier, préparation des données, modélisation, mise à disposition du résultat.",
   items: skillItems,
 } as const;
 
@@ -162,9 +170,9 @@ export const skills = {
 
 export const about = {
   title: "À PROPOS DE MOI",
-  body: "Je m'appelle Yann Niangara. Après une formation en data science, je me spécialise en data analyse : SQL, Python et Power BI au service de questions métier concrètes. Ce qui m'intéresse, c'est le moment où un chiffre change une décision. Je cherche un stage ou une alternance pour mettre ces compétences au contact du réel.",
+  body: "Je m'appelle Yann Niangara. Une licence en informatique, du développement d'applications, puis un master en data science : je travaille aujourd'hui à la jonction des deux. Ce qui m'intéresse, c'est le moment où un chiffre change une décision — et le code qui permet d'y arriver, du pipeline de traitement à l'API qui expose le résultat. Je suis ouvert au CDI, aux missions freelance comme à l'alternance.",
   cta: { label: "MON PARCOURS", href: "#contact" },
-  /** exemple — chiffres à confirmer */
+  /** maquette — chiffres non vérifiés, à confirmer ou à corriger */
   stats: [
     { value: 12, label: "Projets data réalisés" },
     { value: 24, label: "Mois de formation en data" },
@@ -176,6 +184,10 @@ export const about = {
 /* Projets                                                                     */
 /* -------------------------------------------------------------------------- */
 
+/**
+ * maquette — ces quatre projets sont ceux du design, ils ne correspondent à
+ * aucun travail réel. À remplacer par de vrais dépôts (github.com/3318black).
+ */
 const projectItems: readonly Project[] = [
   {
     badge: "POWER BI",
@@ -225,17 +237,23 @@ export const projects = {
 
 export const stack = {
   title: "STACK TECHNIQUE",
+  /**
+   * POWER BI, TABLEAU, EXCEL et R viennent de la maquette et n'ont pas été
+   * confirmés : les retirer si tu ne les pratiques pas réellement.
+   */
   items: [
     "PYTHON",
     "PANDAS",
+    "SCIKIT-LEARN",
     "SQL",
+    "POSTGRESQL",
+    "FASTAPI",
+    "FLASK",
+    "GIT",
     "POWER BI",
     "TABLEAU",
     "EXCEL",
     "R",
-    "GIT",
-    "SCIKIT-LEARN",
-    "POSTGRESQL",
   ],
 } as const;
 
@@ -295,15 +313,15 @@ export const testimonials = {
 const faqItems: readonly AccordionEntry[] = [
   {
     title: "QUELLES TECHNOLOGIES MAÎTRISEZ-VOUS ?",
-    body: "Python (Pandas, scikit-learn), SQL, Power BI et Tableau au quotidien ; R, Git et Excel avancé en appui.",
+    body: "Python (Pandas, scikit-learn), SQL et PostgreSQL au quotidien, FastAPI et Flask pour exposer les traitements, Git pour le versionnement.",
   },
   {
-    title: "ÊTES-VOUS DISPONIBLE POUR UNE ALTERNANCE ?",
-    body: "Oui, sur un rythme 3 semaines en entreprise / 1 semaine en école, dès la rentrée. Un stage de fin d'études est également possible.",
+    title: "QUEL TYPE DE POSTE RECHERCHEZ-VOUS ?",
+    body: "Je suis ouvert au CDI comme aux missions freelance, et l'alternance reste envisageable. Le format compte moins que le sujet : les projets où la donnée débouche sur une décision ou un outil réellement utilisé.",
   },
   {
     title: "COMMENT TRAVAILLEZ-VOUS SUR UN PROJET DATA ?",
-    body: "Cadrage de la question métier, audit de la qualité des données, exploration, restitution visuelle, puis recommandations chiffrées. Chaque étape est documentée dans un notebook ou un rapport court.",
+    body: "Cadrage de la question métier, audit de la qualité des données, exploration, modélisation, puis mise à disposition du résultat — rapport, tableau de bord ou API selon l'usage. Chaque étape est documentée.",
   },
   {
     title: "AVEZ-VOUS DÉJÀ TRAVAILLÉ EN ÉQUIPE ?",
@@ -330,7 +348,10 @@ export const faq = {
 /* Veille                                                                      */
 /* -------------------------------------------------------------------------- */
 
-/** exemple — pointer vers les vrais articles */
+/**
+ * maquette — articles inventés, liens factices. Les remplacer, ou masquer la
+ * section entière via `sections.showArticles = false`.
+ */
 const articleItems: readonly Article[] = [
   {
     category: "MÉTHODE",
@@ -364,7 +385,7 @@ export const articles = {
 export const contact = {
   title: "TRAVAILLONS ENSEMBLE",
   intro:
-    "Un stage, une alternance ou une mission data : dites-moi ce dont vous avez besoin, je réponds sous 24 h.",
+    "Un poste, une mission freelance ou une alternance : dites-moi ce dont vous avez besoin, je réponds sous 24 h.",
   submitLabel: "ENVOYER",
   submittingLabel: "ENVOI…",
 } as const;

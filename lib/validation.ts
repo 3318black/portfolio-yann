@@ -1,10 +1,14 @@
 import { z } from "zod";
 
-/** Valeurs du `<select>` de la maquette, reprises telles quelles. */
+/**
+ * Valeurs du `<select>` de la section contact. La maquette proposait
+ * « Stage / Alternance / Mission ponctuelle » ; la liste couvre désormais les
+ * trois formats réellement recherchés.
+ */
 export const CONTACT_SUBJECTS = [
-  "Stage",
+  "Poste (CDI/CDD)",
   "Alternance",
-  "Mission ponctuelle",
+  "Mission freelance",
   "Autre",
 ] as const;
 

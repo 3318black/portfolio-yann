@@ -68,17 +68,24 @@ du contenu réel, des visuels et d'une vérification navigateur — pas du code.
 ### Remplacer le contenu factice
 
 Tout est dans [content/site.ts](content/site.ts), aucun composant à toucher.
+Ce qui reste est signalé par un commentaire `maquette` dans le fichier.
 
-- [ ] **Témoignages** — les 4 témoignages nominatifs de la maquette sont
-      **fictifs** (« Claire Fontaine — enseignante en statistiques »…).
-      Les remplacer par de vrais retours, ou passer `sections.showTestimonials`
-      à `false`. Publier de faux témoignages attribués à des personnes nommées
-      n'est pas acceptable en production.
-- [ ] Email et téléphone — `yann.niangara@email.com`, `+33 6 12 34 56 78`
-- [ ] Liens LinkedIn / GitHub / Kaggle — pointent vers les pages d'accueil
-- [ ] Statistiques 12 / 24 / 4 et le « 96 % de précision » du modèle de churn
-- [ ] Descriptions des 4 projets, si elles doivent refléter des travaux réels
-- [ ] Les 2 articles de veille, dates et URL comprises
+- [x] ~~Témoignages fictifs~~ — section masquée (`showTestimonials: false`)
+- [x] ~~Email, téléphone, liens sociaux~~ — vrais liens en place, numéro retiré
+- [x] ~~Statut d'étudiant, recherche de stage~~ — positionnement réécrit
+- [ ] **Les 4 projets** sont ceux de la maquette et ne correspondent à aucun
+      travail réel (ventes retail, churn, dashboard RH, mobilité urbaine).
+      À remplacer par de vrais dépôts.
+- [ ] **Les 2 articles de veille** sont inventés, leurs liens factices.
+      À remplacer ou masquer via `sections.showArticles = false`.
+- [ ] **Statistiques 12 / 24 / 4** — non vérifiées.
+- [ ] **Power BI, Tableau, Excel, R** dans la stack — non confirmés,
+      à retirer s'ils ne sont pas pratiqués.
+- [ ] **« Île-de-France »** dans la FAQ (question sur le télétravail) —
+      localisation non confirmée.
+- [ ] Numéro de téléphone, si tu souhaites en afficher un : renseigner
+      `identity.phone`, le pied de page l'affichera automatiquement.
+- [ ] Lien Kaggle, si tu as un profil : le réinsérer dans `socials`.
 
 ### Configurer Resend en production
 

@@ -37,7 +37,7 @@ export function ContactForm() {
   } = useForm<ContactInput>({
     resolver: zodResolver(contactSchema),
     mode: "onBlur",
-    defaultValues: { subject: "Stage", company: "" },
+    defaultValues: { subject: "Poste (CDI/CDD)", company: "" },
   });
 
   const onSubmit = async (values: ContactInput) => {
@@ -62,7 +62,7 @@ export function ContactForm() {
       reset({
         name: "",
         email: "",
-        subject: "Stage",
+        subject: "Poste (CDI/CDD)",
         message: "",
         company: "",
       });
