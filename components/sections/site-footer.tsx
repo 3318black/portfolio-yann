@@ -10,12 +10,16 @@ export function SiteFooter() {
         >
           {identity.email}
         </a>
-        <a
-          href={`tel:${identity.phone.replace(/\s/g, "")}`}
-          className="transition-opacity hover:opacity-75"
-        >
-          {identity.phone}
-        </a>
+        {/* Omis tant qu'aucun numéro n'est renseigné : mieux vaut un pied de
+            page à deux entrées qu'un numéro inventé, cliquable de surcroît. */}
+        {identity.phone ? (
+          <a
+            href={`tel:${identity.phone.replace(/\s/g, "")}`}
+            className="transition-opacity hover:opacity-75"
+          >
+            {identity.phone}
+          </a>
+        ) : null}
         <ul className="flex gap-4">
           {socials.map((social) => (
             <li key={social.label}>

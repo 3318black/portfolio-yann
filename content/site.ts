@@ -57,20 +57,28 @@ export const identity = {
   name: "Yann Niangara",
   role: "Data Analyst · Data Science Student",
   availability: "Ouvert aux opportunités",
-  /** exemple — à remplacer */
-  email: "yann.niangara@email.com",
-  /** exemple — à remplacer */
-  phone: "+33 6 12 34 56 78",
+  email: "niangara33@gmail.com",
+  /**
+   * Laisser vide tant qu'aucun numéro n'est communiqué : le pied de page
+   * l'omet alors, plutôt que d'afficher un numéro inventé cliquable.
+   */
+  phone: "" as string,
   /** Photos : déposer les fichiers dans /public puis renseigner le chemin. */
   avatar: undefined as string | undefined,
   portrait: undefined as string | undefined,
 } as const;
 
-/** exemple — renseigner les vraies URL */
+/**
+ * La maquette prévoyait un troisième lien « KAGGLE ». Il est retiré faute de
+ * profil : renvoyer vers la page d'accueil de Kaggle aurait donné un lien mort
+ * en apparence légitime. Le réinsérer ici suffit à le rétablir.
+ */
 export const socials: readonly NavLink[] = [
-  { label: "LINKEDIN", href: "https://www.linkedin.com/" },
-  { label: "GITHUB", href: "https://github.com/" },
-  { label: "KAGGLE", href: "https://www.kaggle.com/" },
+  {
+    label: "LINKEDIN",
+    href: "https://www.linkedin.com/in/yann-niangara-9b32a1395/",
+  },
+  { label: "GITHUB", href: "https://github.com/3318black" },
 ];
 
 export const nav: readonly NavLink[] = [
@@ -207,8 +215,7 @@ export const projects = {
   title: "PROJETS PHARES",
   intro:
     "Quatre analyses menées de la donnée brute à la recommandation, avec le détail des outils employés.",
-  /** exemple — pointer vers le vrai profil GitHub */
-  cta: { label: "VOIR TOUS LES PROJETS", href: "https://github.com/" },
+  cta: { label: "VOIR TOUS LES PROJETS", href: "https://github.com/3318black" },
   items: projectItems,
 } as const;
 
