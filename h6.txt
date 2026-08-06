@@ -1,9 +1,0 @@
-HTTP/1.1 429 Too Many Requests
-vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
-content-type: application/json
-retry-after: 584
-Date: Wed, 05 Aug 2026 23:20:44 GMT
-Connection: keep-alive
-Keep-Alive: timeout=5
-Transfer-Encoding: chunked
-
