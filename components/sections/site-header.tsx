@@ -18,6 +18,8 @@ import {
 } from "@/lib/gsap";
 import { cn } from "@/lib/utils";
 
+type PinState = "idle" | "pinned" | "leaving";
+
 export function SiteHeader() {
   const ref = React.useRef<HTMLElement>(null);
   const navRef = React.useRef<HTMLElement>(null);
@@ -25,7 +27,14 @@ export function SiteHeader() {
 
   // Une fois le header sorti de l'écran, la gélule se détache et vient se
   // fixer en haut au centre ; elle revient à sa place dès le retour en haut.
-  const [isPinned, setIsPinned] = React.useState(false);
+  //
+  // Trois états et non un booléen : `leaving` maintient la gélule détachée le
+  // temps de son animation de sortie. Repasser directement à `idle` retirerait
+  // le positionnement fixe dès l'image suivante et la ferait claquer dans le
+  // header, sans laisser de fenêtre pour l'animer.
+  const [pinState, setPinState] = React.useState<PinState>("idle");
+  const previousPinState = React.useRef<PinState>("idle");
+  const isDetached = pinState !== "idle";
   // Dimensions figées de l'emplacement laissé vacant. Sans elles, retirer la
   // gélule du flux ferait glisser le bouton « contact » vers la gauche à
   // chaque bascule.
@@ -67,9 +76,9 @@ export function SiteHeader() {
         // taille que l'emplacement devra conserver une fois celle-ci détachée.
         const rect = navRef.current?.getBoundingClientRect();
         if (rect) setSlotSize({ width: rect.width, height: rect.height });
-        setIsPinned(true);
+        setPinState("pinned");
       },
-      onLeaveBack: () => setIsPinned(false),
+      onLeaveBack: () => setPinState("leaving"),
     });
 
     return () => pinTrigger.kill();
@@ -80,32 +89,62 @@ export function SiteHeader() {
       const element = navRef.current;
       if (!element) return;
 
-      if (!isPinned) {
+      const cameFrom = previousPinState.current;
+      previousPinState.current = pinState;
+
+      // Une bascule peut en interrompre une autre — remonter puis redescendre
+      // aussitôt. On coupe l'animation en cours avant d'en lancer une neuve,
+      // sinon les deux se disputent l'opacité de l'élément.
+      gsap.killTweensOf(element);
+
+      if (pinState === "idle") {
         gsap.set(element, { clearProps: "transform,opacity" });
+        return;
+      }
+
+      if (pinState === "leaving") {
+        if (prefersReducedMotion()) {
+          setPinState("idle");
+          return;
+        }
+        // Sortie par le haut : la gélule repart vers le header d'où elle vient.
+        // `power2.in` accélère au départ, à l'inverse de l'entrée.
+        gsap.to(element, {
+          xPercent: -50,
+          y: -14,
+          opacity: 0,
+          duration: 0.28,
+          ease: "power2.in",
+          onComplete: () => setPinState("idle"),
+        });
+        return;
+      }
+
+      if (prefersReducedMotion()) {
+        gsap.set(element, { xPercent: -50, y: 0, opacity: 1 });
         return;
       }
 
       // Le centrage passe par `xPercent` et non par une classe utilitaire :
       // GSAP réécrit `transform` en entier, une translation posée en CSS
       // serait donc écrasée dès la première image de l'animation.
-      if (prefersReducedMotion()) {
-        gsap.set(element, { xPercent: -50, y: 0, opacity: 1 });
-        return;
+      //
+      // L'état de départ n'est imposé que si la gélule arrive du flux. Si elle
+      // était en train de sortir, l'animation reprend depuis sa position et
+      // son opacité du moment, sans à-coup.
+      if (cameFrom === "idle") {
+        gsap.set(element, { xPercent: -50, y: -16, opacity: 0 });
       }
 
-      gsap.fromTo(
-        element,
-        { xPercent: -50, y: -16, opacity: 0 },
-        {
-          xPercent: -50,
-          y: 0,
-          opacity: 1,
-          duration: DURATION.fast,
-          ease: EASE,
-        },
-      );
+      gsap.to(element, {
+        xPercent: -50,
+        y: 0,
+        opacity: 1,
+        duration: DURATION.fast,
+        ease: EASE,
+      });
     },
-    { dependencies: [isPinned] },
+    { dependencies: [pinState] },
   );
 
   useGSAP(
@@ -154,7 +193,7 @@ export function SiteHeader() {
       <div className="flex flex-wrap items-center gap-2.5">
         <div
           style={
-            isPinned && slotSize
+            isDetached && slotSize
               ? { width: slotSize.width, height: slotSize.height }
               : undefined
           }
@@ -164,8 +203,11 @@ export function SiteHeader() {
             items={nav}
             activeHref={activeHref}
             className={cn(
-              isPinned &&
+              isDetached &&
                 "fixed top-3 left-1/2 z-50 max-w-[calc(100vw-1.5rem)] border border-line-strong shadow-[0_10px_34px_rgba(0,0,0,0.5)]",
+              // Pendant la sortie, la gélule s'efface : la laisser cliquable
+              // exposerait une cible invisible au-dessus du contenu.
+              pinState === "leaving" && "pointer-events-none",
             )}
           />
         </div>

@@ -20,7 +20,17 @@
       "Bash(curl -s http://localhost:3000/ -o p4.html -w \"HTTP %{http_code}\\\\n\")",
       "Bash(grep -oE '<nav aria-label=\"Navigation principale\".{0,60}' p4.html)",
       "Bash(python -c ' *)",
-      "Bash(PYTHONIOENCODING=utf-8 python -c ' *)"
+      "Bash(PYTHONIOENCODING=utf-8 python -c ' *)",
+      "PowerShell(npx prettier --write \"components/sections/site-header.tsx\" 2>&1)",
+      "Bash(curl -s http://localhost:3000/ -o /tmp/p5.html -w \"HTTP %{http_code}\\\\n\")",
+      "Bash(gh --version)",
+      "Bash(gh auth *)",
+      "Bash(git check-ignore *)",
+      "PowerShell($gh = \\(Get-Command gh -EA SilentlyContinue\\).Source; if \\($gh\\) { \"gh: $gh\"; gh --version; gh auth status 2>&1 | Select-Object -First 6 } else { \"gh introuvable dans le PATH\" })",
+      "Bash(git rev-list *)",
+      "Bash(git switch *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
     ]
   }
 }
