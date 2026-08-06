@@ -58,6 +58,8 @@ du contenu réel, des visuels et d'une vérification navigateur — pas du code.
 - [x] Correction : incohérence de l'indicateur d'accordéon
 - [x] Correction : erreur d'hydratation sur `<html>`
 - [x] `README.md` · `STEPS.md` · `TASKS.md`
+- [x] `.claude/settings.*` retirés du suivi git et ignorés — ils accumulaient
+      des autorisations d'outils à chaque session et polluaient tous les diffs
 
 ---
 
@@ -117,11 +119,6 @@ Tout est validé par le code, le build et le HTML servi.
 
 ## 🟡 Dette technique connue
 
-- [ ] **`.claude/settings.json` est suivi par git** et accumule des
-      autorisations d'outils à chaque session : il ressort modifié à chaque
-      fois et pollue les diffs. À retirer du suivi
-      (`git rm --cached`, puis l'ajouter au `.gitignore`) — décision à
-      confirmer, le fichier a été committé volontairement au départ.
 - [ ] **`lib/lenis.ts` n'existe pas.** Les options Lenis sont posées
       directement dans `smooth-scroll-provider.tsx`. Acceptable tant qu'il n'y
       a qu'un seul point d'usage ; à extraire si un second apparaît.
