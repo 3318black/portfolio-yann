@@ -58,7 +58,7 @@ export type Article = {
 
 export const identity = {
   name: "Yann Niangara",
-  role: "Data Scientist · Développeur Python",
+  role: "Data Analyst · Statistiques & Machine Learning",
   availability: "Ouvert aux opportunités",
   email: "niangara33@gmail.com",
   /**
@@ -112,9 +112,9 @@ export const sections = {
 
 export const hero = {
   title:
-    "Diplômé En Data Science Et Développeur Python, De L'Analyse Au Déploiement.",
+    "Data Analyst, Je Nettoie Les Données Avec Méthode Et J'Explique Ce Qu'Elles Disent.",
   subtitle:
-    "J'explore les données, j'entraîne des modèles et je livre les API qui les rendent utilisables : Python, SQL, FastAPI et PostgreSQL au service de décisions concrètes.",
+    "Aucune conclusion sans un jeu de données fiable : nettoyage documenté et reproductible, statistiques et machine learning, restitution lisible sous Looker Studio.",
   cta: { label: "projets sélectionnés", href: "#projets" },
   strip: {
     text: "Découvrez mon parcours — licence en informatique, développement d'applications, master en data science — et les projets qui ont construit ma manière de travailler.",
@@ -129,38 +129,38 @@ export const hero = {
 const skillItems: readonly AccordionEntry[] = [
   {
     title: "1. NETTOYAGE & PRÉPARATION DES DONNÉES",
-    body: "Python, Pandas, NumPy. Détection des valeurs manquantes et aberrantes, normalisation des formats, jointures de sources multiples, pipeline documenté et reproductible.",
+    body: "Le cœur de mon travail. Python, Pandas, NumPy : audit de la qualité avant toute chose, traitement des valeurs manquantes et aberrantes, normalisation des formats, déduplication, jointures de sources multiples. Chaque correction est justifiée et tracée, et le traitement est reproductible d'un bout à l'autre.",
   },
   {
     title: "2. ANALYSE STATISTIQUE & EXPLORATION (EDA)",
-    body: "Lecture critique des distributions, corrélations, tests d'hypothèses, segmentation. Je documente ce que les données peuvent — et ne peuvent pas — démontrer.",
+    body: "Lecture critique des distributions, corrélations, tests d'hypothèses, segmentation. Je documente ce que les données peuvent — et ne peuvent pas — démontrer, et je distingue toujours une corrélation d'une causalité.",
   },
   {
     title: "3. MACHINE LEARNING",
-    body: "Régression, classification, validation croisée et évaluation des modèles avec scikit-learn. Je m'attache autant à mesurer la performance qu'à énoncer les limites d'un modèle.",
+    body: "Régression, classification, validation croisée et évaluation des modèles avec scikit-learn. Je m'attache autant à mesurer la performance qu'à expliquer ce que le modèle a réellement appris, et sur quelles variables il s'appuie.",
   },
   {
-    title: "4. DÉVELOPPEMENT D'API & MISE EN PRODUCTION",
-    body: "FastAPI et Flask : exposer un modèle ou un jeu de données derrière une interface stable, typée et documentée. Un résultat qui reste dans un notebook ne sert personne.",
+    title: "4. VISUALISATION & RESTITUTION",
+    body: "Looker Studio pour les tableaux de bord partagés, Matplotlib et Seaborn pour l'analyse. Des graphiques choisis pour la question posée et commentés, pour qu'une équipe non technique sache quoi en faire.",
   },
   {
-    title: "5. SQL & MODÉLISATION DE BASES DE DONNÉES",
-    body: "PostgreSQL : requêtes analytiques, CTE, fonctions de fenêtrage, conception de schéma et modélisation en étoile pour l'analyse.",
+    title: "5. SQL & BASES DE DONNÉES",
+    body: "PostgreSQL : requêtes analytiques, CTE, fonctions de fenêtrage, conception de schéma et modélisation pour l'analyse.",
   },
   {
     title: "6. AUTOMATISATION",
     body: "Scripts et traitements planifiés pour supprimer les étapes manuelles récurrentes : collecte, contrôle de qualité, rafraîchissement des livrables.",
   },
   {
-    title: "7. VISUALISATION & RESTITUTION",
-    body: "Matplotlib, Seaborn et outils de dashboarding. Des graphiques choisis pour la question posée, lisibles par des équipes non techniques.",
+    title: "7. DÉVELOPPEMENT D'API",
+    body: "FastAPI et Flask, hérités de ma licence en informatique : exposer un jeu de données ou un modèle derrière une interface stable et documentée, quand un fichier ou un tableau de bord ne suffit pas.",
   },
 ];
 
 export const skills = {
   title: ["CE QUE JE PEUX", "FAIRE POUR VOUS"],
   intro:
-    "De la donnée brute à l'API livrée, je couvre la chaîne complète : cadrage de la question métier, préparation des données, modélisation, mise à disposition du résultat.",
+    "Tout part d'un jeu de données fiable. Je documente chaque décision de nettoyage, puis j'explique ce que l'analyse démontre — et ce qu'elle ne démontre pas.",
   items: skillItems,
 } as const;
 
@@ -170,7 +170,7 @@ export const skills = {
 
 export const about = {
   title: "À PROPOS DE MOI",
-  body: "Je m'appelle Yann Niangara. Une licence en informatique, du développement d'applications, puis un master en data science : je travaille aujourd'hui à la jonction des deux. Ce qui m'intéresse, c'est le moment où un chiffre change une décision — et le code qui permet d'y arriver, du pipeline de traitement à l'API qui expose le résultat. Je suis ouvert au CDI, aux missions freelance comme à l'alternance.",
+  body: "Je m'appelle Yann Niangara, data analyst. Une licence en informatique, du développement d'applications, puis un master en data science : ce parcours technique me sert surtout à fiabiliser la donnée avant de l'analyser. C'est là que je passe le plus de temps, parce qu'une analyse ne vaut jamais mieux que le jeu de données qui la porte. Ensuite viennent les statistiques, le machine learning, et le travail de restitution — expliquer un résultat aussi clairement que l'obtenir. Je suis ouvert au CDI, aux missions freelance comme à l'alternance.",
   cta: { label: "MON PARCOURS", href: "#contact" },
   /** maquette — chiffres non vérifiés, à confirmer ou à corriger */
   stats: [
@@ -239,14 +239,17 @@ export const stack = {
   title: "STACK TECHNIQUE",
   /**
    * POWER BI, TABLEAU, EXCEL et R viennent de la maquette et n'ont pas été
-   * confirmés : les retirer si tu ne les pratiques pas réellement.
+   * confirmés — Looker Studio est l'outil de restitution cité. Les retirer
+   * s'ils ne sont pas réellement pratiqués.
    */
   items: [
     "PYTHON",
     "PANDAS",
+    "NUMPY",
     "SCIKIT-LEARN",
     "SQL",
     "POSTGRESQL",
+    "LOOKER STUDIO",
     "FASTAPI",
     "FLASK",
     "GIT",
@@ -313,7 +316,7 @@ export const testimonials = {
 const faqItems: readonly AccordionEntry[] = [
   {
     title: "QUELLES TECHNOLOGIES MAÎTRISEZ-VOUS ?",
-    body: "Python (Pandas, scikit-learn), SQL et PostgreSQL au quotidien, FastAPI et Flask pour exposer les traitements, Git pour le versionnement.",
+    body: "Python (Pandas, NumPy, scikit-learn) et SQL au quotidien, PostgreSQL pour les bases, Looker Studio pour les tableaux de bord partagés. FastAPI et Flask quand un traitement doit être exposé, Git pour le versionnement.",
   },
   {
     title: "QUEL TYPE DE POSTE RECHERCHEZ-VOUS ?",
@@ -321,7 +324,7 @@ const faqItems: readonly AccordionEntry[] = [
   },
   {
     title: "COMMENT TRAVAILLEZ-VOUS SUR UN PROJET DATA ?",
-    body: "Cadrage de la question métier, audit de la qualité des données, exploration, modélisation, puis mise à disposition du résultat — rapport, tableau de bord ou API selon l'usage. Chaque étape est documentée.",
+    body: "Cadrage de la question métier, puis un audit de qualité systématique : tant que le jeu de données n'est pas fiable, l'analyse ne veut rien dire. Viennent ensuite l'exploration, la modélisation si elle se justifie, et la restitution — rapport, tableau de bord Looker Studio ou API selon l'usage. Chaque décision de nettoyage est documentée et reproductible.",
   },
   {
     title: "AVEZ-VOUS DÉJÀ TRAVAILLÉ EN ÉQUIPE ?",
