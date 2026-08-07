@@ -15,8 +15,19 @@ export const identityShared = {
    * ligne, plutôt que d'afficher un numéro inventé cliquable.
    */
   phone: "",
-  /** Photos : déposer les fichiers dans /public puis renseigner le chemin. */
-  avatar: undefined as string | undefined,
+  /**
+   * Portrait rond de l'en-tête et du bandeau du hero.
+   *
+   * Recadré en carré et centré sur le visage : `object-cover` rogne au centre
+   * de l'image, une source verticale se serait donc retrouvée coupée au niveau
+   * du torse, sommet du crâne hors cadre.
+   */
+  avatar: "/yann-niangara.jpg" as string | undefined,
+  /**
+   * Visuel vertical de la section contact, encore vide — la maquette y prévoit
+   * un « portrait secondaire ». `public/yann-niangara-portrait.jpg` contient la
+   * photo d'origine non recadrée si tu veux l'utiliser en attendant.
+   */
   portrait: undefined as string | undefined,
 } as const;
 

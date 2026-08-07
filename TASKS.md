@@ -122,10 +122,16 @@ Tout est validé par le code, le build et le HTML servi.
 
 ## 🟠 À faire — recommandé
 
-- [ ] **Ajouter les images.** Déposer dans `public/`, puis renseigner le chemin
-      dans le fichier de langue. `MediaPlaceholder` bascule seul sur `next/image`.
-      Concerne : photo de profil, portrait de contact, 4 captures de projets,
-      2 illustrations d'articles.
+- [x] ~~Photo de profil~~ — `public/yann-niangara.jpg`, recadrée en carré et
+      centrée sur le visage. Affichée dans l'en-tête et le bandeau du hero.
+- [ ] **Portrait de la section contact** — la maquette y prévoit un « portrait
+      secondaire », au cadre vertical. Toujours un motif hachuré.
+      `public/yann-niangara-portrait.jpg` contient la photo d'origine non
+      recadrée : renseigner `identity.portrait` dans `content/shared.ts` suffit
+      à l'utiliser en attendant un autre visuel.
+- [ ] **Autres images.** Déposer dans `public/`, puis renseigner le chemin dans
+      le fichier de langue. `MediaPlaceholder` bascule seul sur `next/image`.
+      Restent : 4 captures de projets, 2 illustrations d'articles.
 - [ ] **Carte de partage Open Graph** — `app/opengraph-image.tsx` était prévu au
       plan mais n'a pas été créé. Sans lui, les partages LinkedIn n'affichent
       aucune image.
