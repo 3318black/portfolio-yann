@@ -3,30 +3,30 @@ import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { projects } from "@/content/site";
+import type { ProjectsContent } from "@/content/types";
 
-export function Projects() {
+export function Projects({ content }: { content: ProjectsContent }) {
   return (
     <Section id="projets" aria-labelledby="projets-title">
       <Reveal>
         <SectionHeading
           id="projets-title"
-          title={projects.title}
-          intro={projects.intro}
+          title={content.title}
+          intro={content.intro}
           introClassName="max-w-[520px]"
           className="mb-[clamp(28px,4vw,40px)]"
         />
       </Reveal>
 
       <div className="flex flex-col gap-[clamp(20px,3vw,30px)]">
-        {projects.items.map((project) => (
+        {content.items.map((project) => (
           <ProjectCard key={project.title} project={project} />
         ))}
       </div>
 
       <Reveal className="mt-[clamp(28px,4vw,40px)] flex justify-center">
-        <Button href={projects.cta.href} variant="outline" size="caps">
-          {projects.cta.label}
+        <Button href={content.cta.href} variant="outline" size="caps">
+          {content.cta.label}
         </Button>
       </Reveal>
     </Section>

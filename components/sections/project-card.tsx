@@ -7,7 +7,7 @@ import {
   MediaPlaceholder,
   stripeLabelColor,
 } from "@/components/ui/media-placeholder";
-import type { Project } from "@/content/site";
+import type { Project } from "@/content/types";
 import {
   DURATION,
   EASE,

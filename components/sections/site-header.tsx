@@ -5,8 +5,10 @@ import * as React from "react";
 import { Avatar } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { LocaleSwitcher } from "@/components/ui/locale-switcher";
 import { NavPill } from "@/components/ui/nav-pill";
-import { identity, nav } from "@/content/site";
+import type { Locale } from "@/content/index";
+import type { Identity, NavLink, UiContent } from "@/content/types";
 import {
   DURATION,
   EASE,
@@ -20,7 +22,23 @@ import { cn } from "@/lib/utils";
 
 type PinState = "idle" | "pinned" | "leaving";
 
-export function SiteHeader() {
+export type SiteHeaderProps = {
+  identity: Identity;
+  nav: readonly NavLink[];
+  ui: UiContent;
+  locale: Locale;
+  contactLabel: string;
+  contactHref: string;
+};
+
+export function SiteHeader({
+  identity,
+  nav,
+  ui,
+  locale,
+  contactLabel,
+  contactHref,
+}: SiteHeaderProps) {
   const ref = React.useRef<HTMLElement>(null);
   const navRef = React.useRef<HTMLElement>(null);
   const [activeHref, setActiveHref] = React.useState<string>();
@@ -35,6 +53,7 @@ export function SiteHeader() {
   const [pinState, setPinState] = React.useState<PinState>("idle");
   const previousPinState = React.useRef<PinState>("idle");
   const isDetached = pinState !== "idle";
+
   // Dimensions figées de l'emplacement laissé vacant. Sans elles, retirer la
   // gélule du flux ferait glisser le bouton « contact » vers la gauche à
   // chaque bascule.
@@ -65,7 +84,7 @@ export function SiteHeader() {
     return () => {
       for (const trigger of triggers) trigger?.kill();
     };
-  }, []);
+  }, [nav]);
 
   useGSAP(() => {
     const pinTrigger = ScrollTrigger.create({
@@ -191,6 +210,8 @@ export function SiteHeader() {
       </div>
 
       <div className="flex flex-wrap items-center gap-2.5">
+        <LocaleSwitcher current={locale} label={ui.localeSwitcherLabel} />
+
         <div
           style={
             isDetached && slotSize
@@ -202,6 +223,7 @@ export function SiteHeader() {
             ref={navRef}
             items={nav}
             activeHref={activeHref}
+            label={ui.mainNavLabel}
             className={cn(
               isDetached &&
                 "fixed top-3 left-1/2 z-50 max-w-[calc(100vw-1.5rem)] border border-line-strong shadow-[0_10px_34px_rgba(0,0,0,0.5)]",
@@ -211,8 +233,9 @@ export function SiteHeader() {
             )}
           />
         </div>
-        <Button href="#contact" variant="neon" size="sm" withArrow>
-          contact
+
+        <Button href={contactHref} variant="neon" size="sm" withArrow>
+          {contactLabel}
         </Button>
       </div>
     </header>

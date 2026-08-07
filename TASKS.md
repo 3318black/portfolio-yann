@@ -61,13 +61,24 @@ du contenu réel, des visuels et d'une vérification navigateur — pas du code.
 - [x] `.claude/settings.*` retirés du suivi git et ignorés — ils accumulaient
       des autorisations d'outils à chaque session et polluaient tous les diffs
 
+### Internationalisation
+
+- [x] Trois langues rédigées et adaptées : français, anglais, espagnol
+- [x] Une URL par langue (`/fr`, `/en`, `/es`), générées statiquement
+- [x] Détection automatique via `Accept-Language`, tri par facteur `q`,
+      correspondance sur le préfixe (`fr-CA` → `fr`), repli sur le français
+- [x] Sélecteur `FR · EN · ES` dans l'en-tête, trois ancres réelles
+- [x] `hreflang` et `canonical` par langue
+- [x] Formulaire localisé, avec des clés de sujet stables côté serveur
+- [x] Complétude garantie à la compilation par le type `SiteContent`
+
 ---
 
 ## 🔴 À faire — bloquant avant mise en ligne
 
 ### Remplacer le contenu factice
 
-Tout est dans [content/site.ts](content/site.ts), aucun composant à toucher.
+Tout est dans [content/](content/), aucun composant à toucher.
 Ce qui reste est signalé par un commentaire `maquette` dans le fichier.
 
 - [x] ~~Témoignages fictifs~~ — section masquée (`showTestimonials: false`)
@@ -112,7 +123,7 @@ Tout est validé par le code, le build et le HTML servi.
 ## 🟠 À faire — recommandé
 
 - [ ] **Ajouter les images.** Déposer dans `public/`, puis renseigner le chemin
-      dans `content/site.ts`. `MediaPlaceholder` bascule seul sur `next/image`.
+      dans le fichier de langue. `MediaPlaceholder` bascule seul sur `next/image`.
       Concerne : photo de profil, portrait de contact, 4 captures de projets,
       2 illustrations d'articles.
 - [ ] **Carte de partage Open Graph** — `app/opengraph-image.tsx` était prévu au
@@ -126,6 +137,13 @@ Tout est validé par le code, le build et le HTML servi.
 
 ## 🟡 Dette technique connue
 
+- [ ] **La page 404 n'est pas stylée pour les adresses inconnues.** La mise en
+      page racine vit sous `app/[lang]/`, donc une adresse ne correspondant à
+      aucune route retombe sur le document d'erreur global de Next, sans mise
+      en page ni feuille de style. La corriger imposerait une mise en page
+      racine lisant la langue dans les en-têtes, donc rendue dynamiquement —
+      et ferait perdre la génération statique de `/fr`, `/en` et `/es`.
+      Arbitrage volontaire, détaillé dans `app/[lang]/not-found.tsx`.
 - [ ] **`lib/lenis.ts` n'existe pas.** Les options Lenis sont posées
       directement dans `smooth-scroll-provider.tsx`. Acceptable tant qu'il n'y
       a qu'un seul point d'usage ; à extraire si un second apparaît.

@@ -3,16 +3,16 @@ import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { articles } from "@/content/site";
+import type { ArticlesContent } from "@/content/types";
 
-export function Articles() {
+export function Articles({ content }: { content: ArticlesContent }) {
   return (
     <Section id="veille" aria-labelledby="veille-title">
       <Reveal>
         <SectionHeading
           id="veille-title"
-          title={articles.title}
-          intro={articles.intro}
+          title={content.title}
+          intro={content.intro}
           introClassName="max-w-[520px]"
           className="mb-[clamp(24px,4vw,36px)]"
         />
@@ -22,7 +22,7 @@ export function Articles() {
         mode="stagger"
         className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6"
       >
-        {articles.items.map((article) => (
+        {content.items.map((article) => (
           <a
             key={article.title}
             href={article.href}

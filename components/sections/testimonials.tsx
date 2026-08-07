@@ -2,16 +2,16 @@ import { Card } from "@/components/ui/card";
 import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { testimonials } from "@/content/site";
+import type { TestimonialsContent } from "@/content/types";
 
-export function Testimonials() {
+export function Testimonials({ content }: { content: TestimonialsContent }) {
   return (
     <Section aria-labelledby="temoignages-title">
       <Reveal>
         <SectionHeading
           id="temoignages-title"
-          title={testimonials.title}
-          intro={testimonials.intro}
+          title={content.title}
+          intro={content.intro}
           introClassName="max-w-[520px]"
           className="mb-[clamp(24px,4vw,36px)]"
         />
@@ -21,7 +21,7 @@ export function Testimonials() {
         mode="stagger"
         className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-5"
       >
-        {testimonials.items.map((item) =>
+        {content.items.map((item) =>
           item.kind === "quote" ? (
             <Card key={item.author}>
               <figure className="m-0">

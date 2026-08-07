@@ -3,9 +3,15 @@ import { Card } from "@/components/ui/card";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/ui/section";
-import { contact, identity } from "@/content/site";
+import type { ContactContent, Identity } from "@/content/types";
 
-export function Contact() {
+export function Contact({
+  content,
+  identity,
+}: {
+  content: ContactContent;
+  identity: Identity;
+}) {
   return (
     <Section
       id="contact"
@@ -34,12 +40,12 @@ export function Contact() {
       <Reveal>
         <Card radius="panel" padding="lg" className="h-full">
           <h2 id="contact-title" className="font-display text-panel font-bold">
-            {contact.title}
+            {content.title}
           </h2>
           <p className="mt-2.5 mb-6 text-sm leading-[1.6] text-fg-muted">
-            {contact.intro}
+            {content.intro}
           </p>
-          <ContactForm />
+          <ContactForm content={content} />
         </Card>
       </Reveal>
     </Section>

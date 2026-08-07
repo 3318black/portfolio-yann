@@ -38,11 +38,33 @@ au navigateur, hormis `NEXT_PUBLIC_SITE_URL`.
 En développement, `onboarding@resend.dev` fonctionne sans domaine vérifié, mais
 n'envoie qu'à l'adresse du compte Resend.
 
+## Langues
+
+Le site existe en **français, anglais et espagnol**, à trois adresses distinctes
+générées statiquement : `/fr`, `/en`, `/es`.
+
+Une visite sur `/` est redirigée vers la langue du navigateur ([`proxy.ts`](proxy.ts),
+nommé ainsi car Next 16 a renommé `middleware.ts`), avec repli sur le français.
+Un sélecteur `FR · EN · ES` figure dans l'en-tête.
+
+| Fichier | Rôle |
+|---|---|
+| [`content/types.ts`](content/types.ts) | Le type `SiteContent`, forme que chaque langue doit satisfaire |
+| [`content/shared.ts`](content/shared.ts) | Ce qui ne se traduit pas : email, liens sociaux, stack, ancres |
+| `content/fr.ts` · `en.ts` · `es.ts` | Le texte de chaque langue |
+| [`content/index.ts`](content/index.ts) | `getContent(locale)` et la configuration des langues |
+
+**Ajouter une langue** : créer `content/<code>.ts` sur le modèle d'un fichier
+existant, puis ajouter le code à `LOCALES` dans `content/index.ts`. Le typage
+signale à la compilation toute clé manquante — une traduction incomplète ne
+peut pas partir en production.
+
 ## Modifier le contenu
 
-Tout le texte visible vit dans **[`content/site.ts`](content/site.ts)** — un
-seul fichier typé. Les composants ne font que de la présentation : changer un
-projet, une statistique ou un lien ne demande jamais de toucher au JSX.
+Tout le texte visible vit dans les fichiers de langue de **[`content/`](content/)**.
+Les composants ne font que de la présentation : changer un projet, une
+statistique ou un lien ne demande jamais de toucher au JSX. Une modification
+doit être reportée dans les trois langues.
 
 Deux drapeaux y pilotent l'affichage de sections entières, repris des propriétés
 de la maquette :
@@ -69,7 +91,8 @@ rend le motif hachuré du design.
 Pour remplacer un placeholder :
 
 1. déposer le fichier dans `public/` ;
-2. renseigner son chemin dans `content/site.ts`.
+2. renseigner son chemin dans le fichier de langue (`content/fr.ts`…) ou,
+   pour les visuels partagés, dans `content/shared.ts`.
 
 ```ts
 // Photo de profil et portrait de la section contact
@@ -97,7 +120,7 @@ components/
                           autonomes, sans logique métier
   sections/               Les onze sections de la maquette
   providers/              Lenis × GSAP
-content/site.ts           Source unique du contenu
+content/                  Contenu : types, valeurs partagées, fr/en/es
 emails/                   Gabarit de l'email de notification
 lib/
   gsap.ts                 Enregistrement des plugins, réglages partagés

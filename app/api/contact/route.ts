@@ -3,7 +3,7 @@ import { Resend } from "resend";
 
 import { ContactNotification } from "@/emails/contact-notification";
 import { checkRateLimit, clientKey } from "@/lib/rate-limit";
-import { contactSchema } from "@/lib/validation";
+import { SUBJECT_LABELS_FR, contactSchema } from "@/lib/validation";
 
 // Le SDK Resend s'appuie sur l'environnement Node, pas sur le runtime Edge.
 export const runtime = "nodejs";
@@ -54,6 +54,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false }, { status: 500 });
   }
 
+  // Le formulaire transmet une clé neutre (`job`, `freelance`…) pour rester
+  // valide quelle que soit la langue du visiteur. L'email, lui, s'adresse à un
+  // lecteur francophone.
+  const subjectLabel = SUBJECT_LABELS_FR[subject];
+
   try {
     const resend = new Resend(apiKey);
     const { error } = await resend.emails.send({
@@ -61,8 +66,13 @@ export async function POST(request: Request) {
       to: [to],
       // Permet de répondre au visiteur d'un simple « Répondre ».
       replyTo: email,
-      subject: `[Portfolio] ${subject} — ${name}`,
-      react: ContactNotification({ name, email, subject, message }),
+      subject: `[Portfolio] ${subjectLabel} — ${name}`,
+      react: ContactNotification({
+        name,
+        email,
+        subject: subjectLabel,
+        message,
+      }),
     });
 
     if (error) {

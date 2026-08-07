@@ -1,9 +1,9 @@
 import { Badge } from "@/components/ui/badge";
 import { Reveal } from "@/components/ui/reveal";
 import { Section } from "@/components/ui/section";
-import { stack } from "@/content/site";
+import type { StackContent } from "@/content/types";
 
-export function Stack() {
+export function Stack({ content }: { content: StackContent }) {
   return (
     <Section aria-labelledby="stack-title">
       <Reveal>
@@ -11,7 +11,7 @@ export function Stack() {
           id="stack-title"
           className="mb-6 font-display text-section font-bold"
         >
-          {stack.title}
+          {content.title}
         </h2>
       </Reveal>
 
@@ -21,7 +21,7 @@ export function Stack() {
         y={12}
         className="flex flex-wrap gap-3"
       >
-        {stack.items.map((item) => (
+        {content.items.map((item) => (
           <Badge key={item} variant="tag">
             {item}
           </Badge>

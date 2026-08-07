@@ -2,9 +2,15 @@ import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { Section, SectionSplit } from "@/components/ui/section";
 import { Stat } from "@/components/ui/stat";
-import { about, socials } from "@/content/site";
+import type { AboutContent, NavLink } from "@/content/types";
 
-export function About() {
+export function About({
+  content,
+  socials,
+}: {
+  content: AboutContent;
+  socials: readonly NavLink[];
+}) {
   return (
     <Section id="apropos" aria-labelledby="apropos-title">
       <SectionSplit className="items-start">
@@ -13,10 +19,10 @@ export function About() {
             id="apropos-title"
             className="font-display text-section font-bold"
           >
-            {about.title}
+            {content.title}
           </h2>
           <p className="mt-4 max-w-[480px] text-[15px] leading-[1.7] text-fg-muted">
-            {about.body}
+            {content.body}
           </p>
 
           <ul className="mt-7 flex flex-wrap items-center gap-5 font-mono text-xs text-fg-muted">
@@ -35,12 +41,12 @@ export function About() {
           </ul>
 
           <Button
-            href={about.cta.href}
+            href={content.cta.href}
             variant="neon"
             size="caps"
             className="mt-7"
           >
-            {about.cta.label}
+            {content.cta.label}
           </Button>
         </Reveal>
 
@@ -48,7 +54,7 @@ export function About() {
           mode="stagger"
           className="grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-6"
         >
-          {about.stats.map((stat) => (
+          {content.stats.map((stat) => (
             <Stat key={stat.label} value={stat.value} label={stat.label} />
           ))}
         </Reveal>

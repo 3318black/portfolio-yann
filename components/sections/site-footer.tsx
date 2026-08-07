@@ -1,6 +1,14 @@
-import { footer, identity, socials } from "@/content/site";
+import type { Identity, NavLink } from "@/content/types";
 
-export function SiteFooter() {
+export function SiteFooter({
+  identity,
+  socials,
+  copyright,
+}: {
+  identity: Identity;
+  socials: readonly NavLink[];
+  copyright: string;
+}) {
   return (
     <footer className="bg-neon text-ink">
       <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-4 px-[clamp(20px,5vw,64px)] py-[26px] font-mono text-xs">
@@ -36,7 +44,7 @@ export function SiteFooter() {
         </ul>
       </div>
       <p className="mx-auto max-w-[1240px] px-[clamp(20px,5vw,64px)] pb-[22px] font-mono text-[11px] opacity-65">
-        {footer.copyright}
+        {copyright}
       </p>
     </footer>
   );

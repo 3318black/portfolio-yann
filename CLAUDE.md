@@ -144,7 +144,8 @@ La §0 décrit deux MCP à installer. Dans les faits :
 
 ## 10. Conventions établies
 
-- **Tout le contenu visible vit dans [`content/site.ts`](content/site.ts).** Les
+- **Tout le contenu visible vit dans [`content/`](content/)** (`fr.ts`, `en.ts`,
+  `es.ts`, plus `shared.ts` pour ce qui ne se traduit pas). Les
   composants ne font que de la présentation. Ne jamais écrire de texte en dur
   dans une section.
 - Français pour la documentation, les docstrings et les commentaires. Anglais

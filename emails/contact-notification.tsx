@@ -1,4 +1,10 @@
-import type { ContactInput } from "@/lib/validation";
+export type ContactNotificationProps = {
+  name: string;
+  email: string;
+  /** Libellé français déjà résolu, pas la clé transmise par le formulaire. */
+  subject: string;
+  message: string;
+};
 
 /**
  * Corps de l'email reçu à chaque message du formulaire.
@@ -11,7 +17,7 @@ export function ContactNotification({
   email,
   subject,
   message,
-}: Omit<ContactInput, "company">) {
+}: ContactNotificationProps) {
   return (
     <div
       style={{

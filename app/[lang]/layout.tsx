@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, Manrope, Space_Grotesk } from "next/font/google";
+import { notFound } from "next/navigation";
 
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
-import { hero, identity } from "@/content/site";
+import { LOCALES, getContent, isLocale } from "@/content/index";
 import "@/styles/globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -28,28 +29,44 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: {
-    default: `${identity.name} — ${identity.role}`,
-    template: `%s — ${identity.name}`,
-  },
-  description: hero.subtitle,
-  openGraph: {
-    type: "website",
-    locale: "fr_FR",
-    url: siteUrl,
-    siteName: identity.name,
-    title: `${identity.name} — ${identity.role}`,
+/** Les trois langues sont rendues statiquement au build : aucun coût serveur. */
+export function generateStaticParams() {
+  return LOCALES.map((lang) => ({ lang }));
+}
+
+export async function generateMetadata({
+  params,
+}: LayoutProps<"/[lang]">): Promise<Metadata> {
+  const { lang } = await params;
+  if (!isLocale(lang)) return {};
+
+  const { identity, hero } = getContent(lang);
+  const title = `${identity.name} — ${identity.role}`;
+
+  return {
+    metadataBase: new URL(siteUrl),
+    title: { default: title, template: `%s — ${identity.name}` },
     description: hero.subtitle,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${identity.name} — ${identity.role}`,
-    description: hero.subtitle,
-  },
-  robots: { index: true, follow: true },
-};
+    // Indique à Google que les trois pages sont les variantes d'un même
+    // contenu, et non des doublons.
+    alternates: {
+      canonical: `/${lang}`,
+      languages: Object.fromEntries(
+        LOCALES.map((locale) => [locale, `/${locale}`]),
+      ),
+    },
+    openGraph: {
+      type: "website",
+      locale: lang,
+      url: `${siteUrl}/${lang}`,
+      siteName: identity.name,
+      title,
+      description: hero.subtitle,
+    },
+    twitter: { card: "summary_large_image", title, description: hero.subtitle },
+    robots: { index: true, follow: true },
+  };
+}
 
 export const viewport: Viewport = {
   themeColor: "#0d0d0d",
@@ -70,12 +87,18 @@ export const viewport: Viewport = {
  */
 const NOSCRIPT_REVEAL_STYLE = `[data-reveal="self"],[data-reveal="stagger"]>*,[data-word]{opacity:1!important}`;
 
-export default function RootLayout({
+export default async function LocaleLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+  params,
+}: LayoutProps<"/[lang]">) {
+  const { lang } = await params;
+  if (!isLocale(lang)) notFound();
+
+  const { ui } = getContent(lang);
+
   return (
     <html
-      lang="fr"
+      lang={lang}
       className={`${spaceGrotesk.variable} ${manrope.variable} ${ibmPlexMono.variable}`}
     >
       <head>
@@ -88,7 +111,7 @@ export default function RootLayout({
           href="#contenu"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-pill focus:bg-neon focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-ink"
         >
-          Aller au contenu
+          {ui.skipToContent}
         </a>
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>

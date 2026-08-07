@@ -3,9 +3,15 @@ import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Reveal } from "@/components/ui/reveal";
-import { hero, identity } from "@/content/site";
+import type { HeroContent, Identity } from "@/content/types";
 
-export function Hero() {
+export function Hero({
+  content,
+  identity,
+}: {
+  content: HeroContent;
+  identity: Identity;
+}) {
   return (
     <section
       id="contenu"
@@ -14,18 +20,18 @@ export function Hero() {
     >
       <AnimatedHeading
         id="hero-title"
-        text={hero.title}
+        text={content.title}
         className="mx-auto max-w-[940px] font-display text-hero leading-[1.16] font-medium tracking-[-0.02em] text-neon-soft"
       />
 
       <Reveal immediate delay={0.4} mode="stagger" stagger={0.12}>
         <p className="mx-auto mt-[clamp(24px,3vw,34px)] max-w-[620px] text-base leading-[1.6] text-fg-tertiary">
-          {hero.subtitle}
+          {content.subtitle}
         </p>
 
         <div className="mt-[clamp(28px,4vw,42px)] flex justify-center">
-          <Button href={hero.cta.href} variant="surface" size="md">
-            {hero.cta.label}
+          <Button href={content.cta.href} variant="surface" size="md">
+            {content.cta.label}
           </Button>
         </div>
 
@@ -37,10 +43,10 @@ export function Hero() {
         >
           <Avatar src={identity.avatar} alt="" size={52} />
           <p className="flex-1 basis-[260px] text-[15px] leading-[1.6] text-fg-tertiary">
-            {hero.strip.text}
+            {content.strip.text}
           </p>
-          <Button href={hero.strip.cta.href} variant="secondary" size="sm">
-            {hero.strip.cta.label}
+          <Button href={content.strip.cta.href} variant="secondary" size="sm">
+            {content.strip.cta.label}
           </Button>
         </Card>
       </Reveal>

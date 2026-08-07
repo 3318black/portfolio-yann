@@ -50,7 +50,7 @@ tranchés avec l'utilisateur avant écriture de la moindre ligne :
 | Question | Décision |
 |---|---|
 | Les visuels sont des motifs hachurés dans la maquette | Composant `MediaPlaceholder` : hachures sans `src`, `next/image` dès qu'un fichier est déposé |
-| Le contenu est factice | Tout centralisé dans `content/site.ts` |
+| Le contenu est factice | Tout centralisé dans `content/` |
 | Deux liens ne mènent nulle part | Page unique, liens externes configurables |
 
 ---
@@ -231,6 +231,6 @@ pendant `leaving` évite une cible cliquable invisible.
 | `autoRaf: false` sur Lenis | Une seule horloge avec GSAP, pas de tremblement au scroll |
 | Accordéon sur `<details>` natif | Fonctionne sans JavaScript, indexable |
 | Valeur finale des statistiques rendue côté serveur | Le bon chiffre s'affiche sans JavaScript |
-| Contenu isolé dans `content/site.ts` | Éditer le site sans toucher au JSX |
+| Contenu isolé dans `content/` | Éditer le site sans toucher au JSX |
 | Schéma Zod unique client + serveur | Une seule source de vérité pour la validation |
 | Aucune image requise | Le site est complet dès le premier lancement |

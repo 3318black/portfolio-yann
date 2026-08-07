@@ -9,25 +9,25 @@ import { Field, errorId } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { contact } from "@/content/site";
+import type { ContactContent } from "@/content/types";
 import {
   CONTACT_SUBJECTS,
-  contactSchema,
+  buildContactSchema,
   type ContactInput,
 } from "@/lib/validation";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-const ERROR_MESSAGES: Record<number, string> = {
-  429: "Trop de messages envoyés. Réessayez dans quelques minutes.",
-};
-
-const FALLBACK_ERROR =
-  "L'envoi a échoué. Réessayez, ou écrivez-moi directement par email.";
-
-export function ContactForm() {
+export function ContactForm({ content }: { content: ContactContent }) {
   const [status, setStatus] = React.useState<Status>("idle");
   const [serverError, setServerError] = React.useState<string>();
+
+  // Le schéma est reconstruit si la langue change : seuls les messages
+  // diffèrent, les règles restent celles que le serveur applique.
+  const schema = React.useMemo(
+    () => buildContactSchema(content.validation),
+    [content.validation],
+  );
 
   const {
     register,
@@ -35,9 +35,9 @@ export function ContactForm() {
     reset,
     formState: { errors },
   } = useForm<ContactInput>({
-    resolver: zodResolver(contactSchema),
+    resolver: zodResolver(schema),
     mode: "onBlur",
-    defaultValues: { subject: "Poste (CDI/CDD)", company: "" },
+    defaultValues: { subject: "job", company: "" },
   });
 
   const onSubmit = async (values: ContactInput) => {
@@ -52,7 +52,11 @@ export function ContactForm() {
       });
 
       if (!response.ok) {
-        setServerError(ERROR_MESSAGES[response.status] ?? FALLBACK_ERROR);
+        setServerError(
+          response.status === 429
+            ? content.errorRateLimit
+            : content.errorGeneric,
+        );
         setStatus("error");
         return;
       }
@@ -62,13 +66,13 @@ export function ContactForm() {
       reset({
         name: "",
         email: "",
-        subject: "Poste (CDI/CDD)",
+        subject: "job",
         message: "",
         company: "",
       });
       setStatus("success");
     } catch {
-      setServerError(FALLBACK_ERROR);
+      setServerError(content.errorGeneric);
       setStatus("error");
     }
   };
@@ -92,11 +96,15 @@ export function ContactForm() {
       </div>
 
       <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-3.5">
-        <Field label="NOM" htmlFor="name" error={errors.name?.message}>
+        <Field
+          label={content.fields.name}
+          htmlFor="name"
+          error={errors.name?.message}
+        >
           <Input
             id="name"
             type="text"
-            placeholder="Votre nom"
+            placeholder={content.placeholders.name}
             autoComplete="name"
             aria-invalid={Boolean(errors.name)}
             aria-describedby={errors.name ? errorId("name") : undefined}
@@ -104,11 +112,15 @@ export function ContactForm() {
           />
         </Field>
 
-        <Field label="EMAIL" htmlFor="email" error={errors.email?.message}>
+        <Field
+          label={content.fields.email}
+          htmlFor="email"
+          error={errors.email?.message}
+        >
           <Input
             id="email"
             type="email"
-            placeholder="vous@entreprise.com"
+            placeholder={content.placeholders.email}
             autoComplete="email"
             aria-invalid={Boolean(errors.email)}
             aria-describedby={errors.email ? errorId("email") : undefined}
@@ -118,7 +130,7 @@ export function ContactForm() {
       </div>
 
       <Field
-        label="SUJET"
+        label={content.fields.subject}
         htmlFor="subject"
         error={errors.subject?.message}
         className="mt-3.5"
@@ -129,16 +141,18 @@ export function ContactForm() {
           aria-describedby={errors.subject ? errorId("subject") : undefined}
           {...register("subject")}
         >
+          {/* La valeur envoyée est une clé neutre, seul le libellé est traduit :
+              changer de langue ne casse donc pas la validation serveur. */}
           {CONTACT_SUBJECTS.map((subject) => (
             <option key={subject} value={subject}>
-              {subject}
+              {content.subjectLabels[subject]}
             </option>
           ))}
         </Select>
       </Field>
 
       <Field
-        label="MESSAGE"
+        label={content.fields.message}
         htmlFor="message"
         error={errors.message?.message}
         className="mt-3.5"
@@ -146,7 +160,7 @@ export function ContactForm() {
         <Textarea
           id="message"
           rows={4}
-          placeholder="Parlez-moi de vos données…"
+          placeholder={content.placeholders.message}
           aria-invalid={Boolean(errors.message)}
           aria-describedby={errors.message ? errorId("message") : undefined}
           {...register("message")}
@@ -160,7 +174,7 @@ export function ContactForm() {
         disabled={isSubmitting}
         className="mt-5 px-[30px] py-3.5"
       >
-        {isSubmitting ? contact.submittingLabel : contact.submitLabel}
+        {isSubmitting ? content.submittingLabel : content.submitLabel}
       </Button>
 
       <p
@@ -168,7 +182,7 @@ export function ContactForm() {
         aria-live="polite"
         className="mt-4 text-[13px] text-neon"
       >
-        {status === "success" ? "Message envoyé. Je réponds sous 24 h." : null}
+        {status === "success" ? content.success : null}
       </p>
 
       {status === "error" && serverError ? (
