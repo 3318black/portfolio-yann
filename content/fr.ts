@@ -112,11 +112,20 @@ export const fr: SiteContent = {
     intro:
       "Quatre analyses menées de la donnée brute à la recommandation, avec le détail des outils employés.",
     cta: { label: "VOIR TOUS LES PROJETS", href: githubProfile },
-    /**
-     * maquette — ces quatre projets sont ceux du design, ils ne correspondent à
-     * aucun travail réel. À remplacer par de vrais dépôts.
-     */
     items: [
+      {
+        badge: "MACHINE LEARNING",
+        title: "PRÉDICTION DE CHURN · KKBOX",
+        description:
+          "Chaque lundi, les abonnés d'un service de streaming classés par risque de départ, avec jusqu'à trois motifs sur lesquels agir. Sur 50 appels par semaine, le modèle désigne en moyenne 14 vrais départs, contre 4 pour un tri par revenu — validation chronologique sur 76 semaines jamais vues. Python, XGBoost, scikit-learn, Streamlit.",
+        mediaLabel: "liste du lundi · motifs par abonné",
+        tint: "neutral",
+        href: "https://github.com/3318black/nsy-churn",
+      },
+      /**
+       * maquette — les trois projets suivants sont ceux du design, ils ne
+       * correspondent à aucun travail réel. À remplacer par de vrais dépôts.
+       */
       {
         badge: "POWER BI",
         title: "ANALYSE DES VENTES RETAIL",
@@ -124,14 +133,6 @@ export const fr: SiteContent = {
           "18 mois de transactions consolidés en un dashboard unique : saisonnalité, marge par catégorie et classement des magasins. Trois recommandations d'assortiment issues de l'analyse. Power BI, SQL, DAX.",
         mediaLabel: "capture dashboard ventes retail",
         tint: "green",
-      },
-      {
-        badge: "MACHINE LEARNING",
-        title: "PRÉDICTION DE CHURN CLIENT",
-        description:
-          "Modèle de classification identifiant les clients à risque de résiliation, avec les trois variables les plus prédictives isolées pour l'équipe commerciale. Python, scikit-learn, Seaborn.",
-        mediaLabel: "courbe ROC · matrice de confusion",
-        tint: "neutral",
       },
       {
         badge: "TABLEAU",

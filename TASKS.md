@@ -84,8 +84,12 @@ Ce qui reste est signalé par un commentaire `maquette` dans le fichier.
 - [x] ~~Témoignages fictifs~~ — section masquée (`showTestimonials: false`)
 - [x] ~~Email, téléphone, liens sociaux~~ — vrais liens en place, numéro retiré
 - [x] ~~Statut d'étudiant, recherche de stage~~ — positionnement réécrit
-- [ ] **Les 4 projets** sont ceux de la maquette et ne correspondent à aucun
-      travail réel (ventes retail, churn, dashboard RH, mobilité urbaine).
+- [x] ~~Projet churn fictif~~ — remplacé par
+      [nsy-churn](https://github.com/3318black/nsy-churn), en tête de liste,
+      chiffres repris de la mesure de référence du dépôt (14 septembre 2026).
+      La carte entière pointe vers le dépôt.
+- [ ] **Les 3 autres projets** sont ceux de la maquette et ne correspondent à
+      aucun travail réel (ventes retail, dashboard RH, mobilité urbaine).
       À remplacer par de vrais dépôts.
 - [ ] **Les 2 articles de veille** sont inventés, leurs liens factices.
       À remplacer ou masquer via `sections.showArticles = false`.
@@ -131,7 +135,7 @@ Tout est validé par le code, le build et le HTML servi.
       à l'utiliser en attendant un autre visuel.
 - [ ] **Autres images.** Déposer dans `public/`, puis renseigner le chemin dans
       le fichier de langue. `MediaPlaceholder` bascule seul sur `next/image`.
-      Restent : 4 captures de projets, 2 illustrations d'articles.
+      Restent : 4 captures de projets (dont nsy-churn), 2 illustrations d'articles.
 - [ ] **Carte de partage Open Graph** — `app/opengraph-image.tsx` était prévu au
       plan mais n'a pas été créé. Sans lui, les partages LinkedIn n'affichent
       aucune image.

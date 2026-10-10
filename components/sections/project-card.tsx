@@ -110,7 +110,21 @@ export function ProjectCard({ project }: { project: Project }) {
       <Badge variant="category">{project.badge}</Badge>
 
       <h3 className="mt-[18px] mb-3 font-display text-project leading-[1.05] font-bold">
-        {project.title}
+        {project.href ? (
+          // Lien étiré : le pseudo-élément couvre toute la carte, mais le nom
+          // accessible du lien reste le seul titre, pas la description entière.
+          <a
+            href={project.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors after:absolute after:inset-0 after:content-[''] group-hover:text-neon"
+          >
+            {project.title}
+            <span aria-hidden="true"> ↗</span>
+          </a>
+        ) : (
+          project.title
+        )}
       </h3>
 
       <p className="max-w-[580px] text-[15px] leading-[1.65] text-fg-secondary">

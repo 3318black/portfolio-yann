@@ -110,11 +110,20 @@ export const en: SiteContent = {
     intro:
       "Four analyses taken from raw data to recommendation, with the tools used spelled out.",
     cta: { label: "SEE ALL PROJECTS", href: githubProfile },
-    /**
-     * mockup — these four projects come from the design and match no real work.
-     * To be replaced with actual repositories.
-     */
     items: [
+      {
+        badge: "MACHINE LEARNING",
+        title: "CHURN PREDICTION · KKBOX",
+        description:
+          "Every Monday, a streaming service's subscribers ranked by risk of leaving, each with up to three reasons a retention agent can act on. Out of 50 calls a week, the model finds 14 actual churners on average, against 4 for a revenue-based ranking — time-based validation over 76 unseen weeks. Python, XGBoost, scikit-learn, Streamlit.",
+        mediaLabel: "monday list · reasons per subscriber",
+        tint: "neutral",
+        href: "https://github.com/3318black/nsy-churn",
+      },
+      /**
+       * mockup — the next three projects come from the design and match no
+       * real work. To be replaced with actual repositories.
+       */
       {
         badge: "POWER BI",
         title: "RETAIL SALES ANALYSIS",
@@ -122,14 +131,6 @@ export const en: SiteContent = {
           "Eighteen months of transactions consolidated into a single dashboard: seasonality, margin by category and store ranking. Three assortment recommendations came out of the analysis. Power BI, SQL, DAX.",
         mediaLabel: "retail sales dashboard screenshot",
         tint: "green",
-      },
-      {
-        badge: "MACHINE LEARNING",
-        title: "CUSTOMER CHURN PREDICTION",
-        description:
-          "A classification model flagging customers at risk of leaving, with the three most predictive variables isolated for the sales team. Python, scikit-learn, Seaborn.",
-        mediaLabel: "ROC curve · confusion matrix",
-        tint: "neutral",
       },
       {
         badge: "TABLEAU",
