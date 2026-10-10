@@ -87,7 +87,7 @@ Ce qui reste est signalé par un commentaire `maquette` dans le fichier.
 - [x] ~~Projet churn fictif~~ — remplacé par
       [nsy-churn](https://github.com/3318black/nsy-churn), en tête de liste,
       chiffres repris de la mesure de référence du dépôt (14 septembre 2026).
-      La carte entière pointe vers le dépôt.
+      La carte entière pointe vers l'application Streamlit en ligne.
 - [ ] **Les 3 autres projets** sont ceux de la maquette et ne correspondent à
       aucun travail réel (ventes retail, dashboard RH, mobilité urbaine).
       À remplacer par de vrais dépôts.

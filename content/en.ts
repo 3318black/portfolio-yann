@@ -115,10 +115,10 @@ export const en: SiteContent = {
         badge: "MACHINE LEARNING",
         title: "CHURN PREDICTION · KKBOX",
         description:
-          "Every Monday, a streaming service's subscribers ranked by risk of leaving, each with up to three reasons a retention agent can act on. Out of 50 calls a week, the model finds 14 actual churners on average, against 4 for a revenue-based ranking — time-based validation over 76 unseen weeks. Python, XGBoost, scikit-learn, Streamlit.",
-        mediaLabel: "monday list · reasons per subscriber",
+          "A live retention app for a streaming service. Every Monday, it ranks subscribers by their risk of leaving and tells the agent what to say to each one on the phone. Out of 50 calls a week, the model finds 14 actual churners on average, against 4 for a revenue-based ranking — measured over 76 past weeks it had never seen. Python, XGBoost, scikit-learn, Streamlit.",
+        mediaLabel: "live app · monday list",
         tint: "neutral",
-        href: "https://github.com/3318black/nsy-churn",
+        href: "https://appapppy-gm32tcl7sk2qhllhvg9vdv.streamlit.app/",
       },
       /**
        * mockup — the next three projects come from the design and match no

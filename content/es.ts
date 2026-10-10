@@ -115,10 +115,10 @@ export const es: SiteContent = {
         badge: "MACHINE LEARNING",
         title: "PREDICCIÓN DE FUGA · KKBOX",
         description:
-          "Cada lunes, los abonados de un servicio de streaming ordenados por riesgo de baja, con hasta tres motivos sobre los que actuar. De 50 llamadas por semana, el modelo señala de media 14 bajas reales, frente a 4 con una ordenación por ingresos — validación cronológica sobre 76 semanas nunca vistas. Python, XGBoost, scikit-learn, Streamlit.",
-        mediaLabel: "lista del lunes · motivos por abonado",
+          "Aplicación en línea de apoyo a la retención para un servicio de streaming. Cada lunes, ordena a los abonados según su riesgo de baja e indica, para cada uno, qué decirle por teléfono. De 50 llamadas por semana, el modelo encuentra de media 14 bajas reales, frente a 4 con una ordenación por ingresos — medido sobre 76 semanas pasadas que nunca había visto. Python, XGBoost, scikit-learn, Streamlit.",
+        mediaLabel: "aplicación en línea · lista del lunes",
         tint: "neutral",
-        href: "https://github.com/3318black/nsy-churn",
+        href: "https://appapppy-gm32tcl7sk2qhllhvg9vdv.streamlit.app/",
       },
       /**
        * maqueta — los tres proyectos siguientes vienen del diseño y no
