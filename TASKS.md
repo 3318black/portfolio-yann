@@ -125,10 +125,12 @@ Tout est validé par le code, le build et le HTML servi.
 - [x] ~~Photo de profil~~ — `public/yann-niangara.jpg`, recadrée en carré et
       centrée sur le visage. Affichée dans l'en-tête et le bandeau du hero.
 - [x] ~~Portrait de la section contact~~ — photo de la remise du master,
-      `public/yann-niangara-diplome.jpg`, recadrée pour ne garder que Yann et
-      le diplôme. Point focal à 25 % de la hauteur (`identity.portraitFocus`) :
-      un rognage centré coupait le visage dans le cadre horizontal de la
-      tablette. À confirmer à l'œil à 360, 768 et 1440 px.
+      `public/yann-niangara-diplome.jpg`, recadrée pour centrer les deux
+      personnes et légèrement accentuée. Servie en qualité 90
+      (`images.qualities` dans `next.config.ts`). Point focal `50% 25%`
+      (`identity.portraitFocus`) : un rognage centré coupait les visages dans
+      le cadre horizontal de la tablette. À confirmer à l'œil à 360, 768 et
+      1440 px.
 - [ ] **Autres images.** Déposer dans `public/`, puis renseigner le chemin dans
       le fichier de langue. `MediaPlaceholder` bascule seul sur `next/image`.
       Restent : 4 captures de projets, 2 illustrations d'articles.

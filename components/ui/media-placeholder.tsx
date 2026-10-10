@@ -74,6 +74,8 @@ export type MediaPlaceholderProps = Omit<
    * coupe un visage placé haut dès que le cadre est plus large que l'image.
    */
   objectPosition?: string;
+  /** Qualité `next/image`, à déclarer dans `images.qualities`. Défaut : 75. */
+  quality?: number;
   sizes?: string;
 };
 
@@ -96,6 +98,7 @@ export function MediaPlaceholder({
   overlay,
   priority = false,
   objectPosition,
+  quality,
   sizes = "100vw",
   className,
   style,
@@ -119,6 +122,7 @@ export function MediaPlaceholder({
           fill
           sizes={sizes}
           priority={priority}
+          quality={quality}
           className="object-cover"
           style={objectPosition ? { objectPosition } : undefined}
         />

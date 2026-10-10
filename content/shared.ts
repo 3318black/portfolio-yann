@@ -25,12 +25,13 @@ export const identityShared = {
   avatar: "/yann-niangara.jpg" as string | undefined,
   /**
    * « Portrait secondaire » de la section contact : la remise du diplôme,
-   * recadrée de 1280 × 854 à 570 × 854 pour ne garder que Yann et le diplôme.
+   * recadrée de 1280 × 854 à 940 × 854 pour centrer les deux personnes,
+   * avec une légère accentuation de netteté.
    *
    * Le cadre change de forme selon l'écran — vertical sur deux colonnes,
-   * horizontal sur tablette, presque carré sur mobile. Un rognage centré
-   * coupait le haut du visage dans le cadre horizontal : le point focal est
-   * donc remonté à hauteur des yeux.
+   * horizontal sur tablette, presque carré sur mobile. Horizontalement, le
+   * rognage reste centré sur les deux visages ; verticalement, il remonte à
+   * hauteur des yeux, sans quoi le cadre de la tablette coupait les visages.
    */
   portrait: "/yann-niangara-diplome.jpg" as string | undefined,
   portraitFocus: "50% 25%",
