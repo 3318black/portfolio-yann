@@ -69,6 +69,11 @@ export type MediaPlaceholderProps = Omit<
   overlay?: React.ReactNode;
   /** Passé à `next/image` : `true` pour les visuels visibles sans scroll. */
   priority?: boolean;
+  /**
+   * `object-position` de l'image. Le rognage est centré par défaut, ce qui
+   * coupe un visage placé haut dès que le cadre est plus large que l'image.
+   */
+  objectPosition?: string;
   sizes?: string;
 };
 
@@ -90,6 +95,7 @@ export function MediaPlaceholder({
   labelPosition = "corner",
   overlay,
   priority = false,
+  objectPosition,
   sizes = "100vw",
   className,
   style,
@@ -114,6 +120,7 @@ export function MediaPlaceholder({
           sizes={sizes}
           priority={priority}
           className="object-cover"
+          style={objectPosition ? { objectPosition } : undefined}
         />
       ) : null}
 

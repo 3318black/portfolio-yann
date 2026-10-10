@@ -22,6 +22,7 @@ export function Contact({
         <MediaPlaceholder
           src={identity.portrait}
           alt={identity.portrait ? identity.name : ""}
+          objectPosition={identity.portraitFocus}
           label="portrait secondaire"
           tint="surface"
           sizes="(max-width: 700px) 100vw, 50vw"

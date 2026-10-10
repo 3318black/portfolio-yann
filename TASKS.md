@@ -124,11 +124,11 @@ Tout est validé par le code, le build et le HTML servi.
 
 - [x] ~~Photo de profil~~ — `public/yann-niangara.jpg`, recadrée en carré et
       centrée sur le visage. Affichée dans l'en-tête et le bandeau du hero.
-- [ ] **Portrait de la section contact** — la maquette y prévoit un « portrait
-      secondaire », au cadre vertical. Toujours un motif hachuré.
-      `public/yann-niangara-portrait.jpg` contient la photo d'origine non
-      recadrée : renseigner `identity.portrait` dans `content/shared.ts` suffit
-      à l'utiliser en attendant un autre visuel.
+- [x] ~~Portrait de la section contact~~ — photo de la remise du master,
+      `public/yann-niangara-diplome.jpg`, recadrée pour ne garder que Yann et
+      le diplôme. Point focal à 25 % de la hauteur (`identity.portraitFocus`) :
+      un rognage centré coupait le visage dans le cadre horizontal de la
+      tablette. À confirmer à l'œil à 360, 768 et 1440 px.
 - [ ] **Autres images.** Déposer dans `public/`, puis renseigner le chemin dans
       le fichier de langue. `MediaPlaceholder` bascule seul sur `next/image`.
       Restent : 4 captures de projets, 2 illustrations d'articles.
