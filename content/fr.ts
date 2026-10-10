@@ -117,7 +117,7 @@ export const fr: SiteContent = {
         badge: "MACHINE LEARNING",
         title: "PRÉDICTION DE CHURN · KKBOX",
         description:
-          "Chaque lundi, les abonnés d'un service de streaming classés par risque de départ, avec jusqu'à trois motifs sur lesquels agir. Sur 50 appels par semaine, le modèle désigne en moyenne 14 vrais départs, contre 4 pour un tri par revenu — validation chronologique sur 76 semaines jamais vues. Mené en binôme avec un collègue. Python, XGBoost, scikit-learn, Streamlit.",
+          "Chaque lundi, les abonnés d'un service de streaming classés par risque de départ, avec jusqu'à trois motifs sur lesquels agir. Sur 50 appels par semaine, le modèle désigne en moyenne 14 vrais départs, contre 4 pour un tri par revenu — validation chronologique sur 76 semaines jamais vues. Python, XGBoost, scikit-learn, Streamlit.",
         mediaLabel: "liste du lundi · motifs par abonné",
         tint: "neutral",
         href: "https://github.com/3318black/nsy-churn",
