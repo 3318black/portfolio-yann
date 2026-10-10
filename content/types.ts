@@ -51,6 +51,8 @@ export type Identity = {
   readonly phone: string;
   readonly avatar?: string;
   readonly portrait?: string;
+  /** `object-position` CSS du portrait : le point qui reste visible au rognage. */
+  readonly portraitFocus?: string;
 };
 
 export type HeroContent = {

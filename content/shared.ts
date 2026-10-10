@@ -24,11 +24,17 @@ export const identityShared = {
    */
   avatar: "/yann-niangara.jpg" as string | undefined,
   /**
-   * Visuel vertical de la section contact, encore vide — la maquette y prévoit
-   * un « portrait secondaire ». `public/yann-niangara-portrait.jpg` contient la
-   * photo d'origine non recadrée si tu veux l'utiliser en attendant.
+   * « Portrait secondaire » de la section contact : la remise du diplôme,
+   * recadrée de 1280 × 854 à 940 × 854 pour centrer les deux personnes,
+   * avec une légère accentuation de netteté.
+   *
+   * Le cadre change de forme selon l'écran — vertical sur deux colonnes,
+   * horizontal sur tablette, presque carré sur mobile. Horizontalement, le
+   * rognage reste centré sur les deux visages ; verticalement, il remonte à
+   * hauteur des yeux, sans quoi le cadre de la tablette coupait les visages.
    */
-  portrait: undefined as string | undefined,
+  portrait: "/yann-niangara-diplome.jpg" as string | undefined,
+  portraitFocus: "50% 25%",
 } as const;
 
 /**
